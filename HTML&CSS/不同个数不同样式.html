@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>需要根据个数显示不同样式</title>
+</head>
+
+<body>
+    <div>
+        <p>使用 nth-last-child 实现个数区分, 因为没有命中的css样式不会改变页面显示</p>
+        <hr />
+        <ul>
+            <li>1</li>
+        </ul>
+        <hr/>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+        </ul>
+        <hr/>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+</body>
+
+<style type="text/css">
+    li {
+        float: left;
+        width: 100%;
+    }
+
+    li:first-child:nth-last-child(2),
+    /* 这个指向的是倒数第二个li */
+    li:first-child:nth-last-child(2)~li
+
+    /* 这个指向的是倒数第二个li的兄弟元素,也就是倒数第一个li */
+        {
+        float: left;
+        width: 50%;
+    }
+
+    li:first-child:nth-last-child(3),
+    /* 这个指向的是倒数第三个li */
+    li:first-child:nth-last-child(3)~li
+
+    /* 这个指向的是倒数第三个li的兄弟元素,也就是倒数第一&二个li */
+        {
+        float: left;
+        width: 33%;
+    }
+</style>
+
+</html>
