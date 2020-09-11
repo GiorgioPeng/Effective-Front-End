@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>能用html/css解决的问题就不要用js</title>
+</head>
+<body>
+    <nav>
+        <li>HOME</li>
+        <li>BUY</li>
+        <li>SELL</li>
+        <li>HOME EVALUATION</li>
+        <li>NEIGHBORHOODS</li>
+        <li>BLOGS</li>
+        <li>ABOUT</li>
+        <li>CITY</li>
+    </nav>
+    <div>上面部分是导航高亮不使用js的方法</div>
+    <hr/>
+    <div>下面部分是显示额外信息使用css的方法</div>
+    <nav class="detail">
+        <li class="home">HOME</li>
+        <div class="home-detail">
+            Your house location: XXXXX
+            <br/>
+            Your house price: $xxx
+        </div>
+        <li class="buy">BUY</li>
+        <div class="buy-detail">
+            Your have: $XXXXX
+        </div>
+        <li class="sell">
+            SELL
+            <div class="sell-detail">
+                price is: $XXXXX
+            </div>
+        </li>
+        <li class="evalution">HOME EVALUATION</li>
+        <li class="neighborhoos">NEIGHBORHOODS</li>
+        <li class="blogs">BLOGS</li>
+        <li class="about">ABOUT</li>
+        <li class="city">CITY</li>
+    </nav>
+</body>
+<style type="text/css">
+html,body{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    background-color: slategrey;
+    display: flex;
+    justify-content: space-around;
+    height:150px;
+    align-items: center;
+}
+li{
+    height: 100%;
+    color:white;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+}
+nav li{
+    opacity: 0.5;
+}
+nav li:hover{
+    opacity: 1;
+}
+
+
+
+
+/* 这里是用相邻选择器弄出的显示隐藏部分 */
+.home-detail{
+    display: none;
+    position: absolute;
+    color:white;
+    background-color: #000;
+    top:375px;
+    left:0px;
+    padding:5px 5px 5px 5px;
+    font-size: 10px;;
+    width:12.5vw;
+}
+.home:hover + .home-detail{
+    display: block;
+}
+.home-detail:hover{
+    display: block;
+}
+
+/* 这部分是有间隔的相邻选择器,使用before/after实现 */
+.buy-detail{
+    display: none;
+    position: absolute;
+    color:white;
+    background-color: #000;
+    top:400px;
+    left:12.5vw;;
+    padding:5px 5px 5px 5px;
+    font-size: 10px;
+    width:12.5vw;
+    text-align: center;
+}
+.buy:hover + .buy-detail{
+    display: block;
+}
+.buy-detail:before{
+    content:"";
+    position: absolute;
+    left:0;
+    top:-35px;
+    height:35px;
+    width:100%;
+}
+.buy-detail:hover{
+    display: block;
+}
+
+/* 这部分使用的是子元素显示详情信息 */
+.sell-detail{
+    display: none;
+    position: absolute;
+    color:white;
+    background-color: #000;
+    top:375px;
+    left:20vw;
+    padding:5px 5px 5px 5px;
+    font-size: 10px;;
+    width:12.5vw;
+}
+.sell .sell-detail{
+    display: none;
+}
+.sell:hover .sell-detail{
+    display: block;
+}
+</style>
+
+</html>
