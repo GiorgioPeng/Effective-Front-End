@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css计数器</title>
+</head>
+
+<body>
+    <div class='choose'>
+        <label><input type="checkbox">苹果</label>
+        <label><input type="checkbox">香蕉</label>
+        <label><input type="checkbox">柚子</label>
+        <label><input type="checkbox">郭丑</label>
+        <label><input type="checkbox">桃子</label>
+    </div>
+    <p>选择了<span class="count"></span>种</p>
+
+    <hr />
+
+    <div class="calc">
+        <p>一个css实现的加法器</p>
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <br />
+
+        <br />
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        
+        <b>+</b>
+        <button>=</button>
+    </div>
+</body>
+<style type='text/css'>
+    .choose {
+        counter-reset: fruit;
+    }
+
+    .choose input:checked {
+        counter-increment: fruit;
+    }
+
+    .count::before {
+        content: counter(fruit);
+    }
+
+    .calc {
+        width:100vw;
+        counter-reset: one 0 two 0 result 0;
+    }
+
+    .calc input {
+        height: 50px;
+        width: 50px;
+    }
+
+    .calc input:nth-of-type(1):checked {
+        counter-increment: one 128;
+    }
+    .calc input:nth-of-type(2):checked {
+        counter-increment: one 64;
+    }
+    .calc input:nth-of-type(3):checked {
+        counter-increment: one 32;
+    }
+    .calc input:nth-of-type(4):checked {
+        counter-increment: one 16;
+    }
+    .calc input:nth-of-type(5):checked {
+        counter-increment: one 8;
+    }
+    .calc input:nth-of-type(6):checked {
+        counter-increment: one 4;
+    }
+    .calc input:nth-of-type(7):checked {
+        counter-increment: one 2;
+    }
+    .calc input:nth-of-type(8):checked {
+        counter-increment: one 1;
+    }
+    
+
+    .calc input:nth-of-type(9):checked {
+        counter-increment: two 128;
+    }
+    .calc input:nth-of-type(10):checked {
+        counter-increment: two 64;
+    }
+    .calc input:nth-of-type(11):checked {
+        counter-increment: two 32;
+    }
+    .calc input:nth-of-type(12):checked {
+        counter-increment: two 16;
+    }
+    .calc input:nth-of-type(13):checked {
+        counter-increment: two 8;
+    }
+    .calc input:nth-of-type(14):checked {
+        counter-increment: two 4;
+    }
+    .calc input:nth-of-type(15):checked {
+        counter-increment: two 2;
+    }
+    .calc input:nth-of-type(16):checked {
+        counter-increment: two 1;
+    }
+    
+    b{
+        position: relative;
+        top:-60px;
+        left:-280px;
+    }
+    b::before{
+        content:counter(one);
+        height:20px;
+        position: absolute;
+        right:20px;
+        top:0px;
+    }
+    b::after{
+        content:counter(two);
+        height:20px;
+        position: absolute;
+        left: 20px;
+        top:0px;
+    }
+    button{
+        position: relative;
+    }
+    button:focus::before{
+        position: absolute;
+        counter-increment: result counter(one);
+        counter-increment: result counter(two);
+        content:counter(result) '没办法,不知道怎么实现两个变量相加';
+        left:50px;
+    }
+
+</style>
+
+</html>

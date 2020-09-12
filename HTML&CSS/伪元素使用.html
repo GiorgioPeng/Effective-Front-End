@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素使用</title>
+</head>
+
+<body>
+
+    <pre>
+        伪元素是一个元素的子元素, 并且是inline行内元素
+        (注意⚠️:一个元素被设置position:absolute之后会变成块级元素)
+        虽然伪元素会影响元素的子元素个数, 但是它对于JS是隐藏的,
+        也就是查询 DOM 的时候不会增加负担
+    </pre>
+
+    <div class="normal">使用伪类绘制一个三角形</div>
+
+    <div class="pro">使用伪类绘制一个有边框的三角形</div>
+
+    <div class="super">使用伪类绘制一个有阴影的三角形</div>
+
+    <p class='or'>用伪元素绘制的分割线</p>
+
+    <pre>
+        浮动:如果一个元素所有子元素都是浮动的, 那么这个元素是没有高度的
+            1.如果父元素的相邻元素都是行内元素, 
+              那么这个行内元素将会在这个父元素的区域找一个能放得下的地方放下去
+            2.如果相邻的是一个块级元素, 那么设置这个块级元素的margin-top 将会
+              以这个父元素的起始位置作为起点.
+    </pre>
+
+    <hr />
+
+    <p>使用伪类使得输入框不可选中</p>
+    <div class="select">
+        <select name="" id="">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+    </div>
+
+    <b>img没有伪元素, input对于<a href="https://www.cnblogs.com/muge10/p/7891301.html">部分type没有伪元素</a></b>
+</body>
+
+<style type='text/css'>
+    .normal {
+        width: 150px;
+        height: 80px;
+        box-shadow: 10px 10px 10px #888888;
+        border-radius: 5px;
+        position: relative;
+        left: 50%;
+        border: 1px solid #ccc;
+    }
+
+    .normal::before {
+
+        content: '';
+        border-left: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 10px solid black;
+        position: absolute;
+        left: -10px;
+        /* 如果想要居中
+            left的负值要和三角形的高相等
+            top的值为元素高度的减去三角形底边 再 除以2
+         */
+        top: 36px;
+    }
+
+    .pro {
+        margin-top: 200px;
+        width: 150px;
+        height: 80px;
+        box-shadow: 10px 10px 10px #888888;
+        border-radius: 5px;
+        position: relative;
+        left: 50%;
+        border: 1px solid #ccc;
+    }
+
+    .pro::before {
+        content: '';
+        border-left: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 10px solid #ccc;
+        position: absolute;
+        left: -10px;
+        /* 如果想要居中
+            left的负值要和三角形的高相等
+            top的值为元素高度的减去三角形底边 再 除以2
+         */
+        top: 36px;
+    }
+
+    .pro::after {
+        content: '';
+        border-left: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 10px solid white;
+        position: absolute;
+        left: -8px;
+        /* 如果想要居中
+            对于before伪类, left的负值要和三角形的高相等
+            top的值为元素高度的减去三角形底边 再 除以2
+         */
+        top: 36px;
+    }
+
+    .super {
+        margin-top: 200px;
+        width: 150px;
+        height: 80px;
+        /* box-shadow: 10px 10px 10px  #888888; */
+        filter: drop-shadow(0 0 2px #999);
+        /* 使用filter添加阴影效果 */
+        border-radius: 5px;
+        position: relative;
+        left: 50%;
+        border: 1px solid #ccc;
+        background-color: white;
+    }
+
+    .super::before {
+        content: '';
+        border-left: 0;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-right: 10px solid white;
+        position: absolute;
+        left: -10px;
+        /* 如果想要居中
+            left的负值要和三角形的高相等
+            top的值为元素高度的减去三角形底边 再 除以2
+         */
+        top: 36px;
+    }
+
+
+    .or {
+        text-align: center;
+        position: relative
+    }
+
+    .or::before,
+    .or::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        height: 1px;
+        background: #ccc;
+        width: 300px;
+    }
+
+    .or::before {
+        left: 0
+    }
+
+    .or::after {
+        right: 0
+    }
+
+
+    .select {
+        position: relative;
+    }
+
+    .select::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 105%;
+        height: 105%;
+    }
+</style>
+
+</html>
