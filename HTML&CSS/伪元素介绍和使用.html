@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪元素介绍和使用</title>
+</head>
+<body>
+    <pre>
+        伪元素是一个元素的子元素, 并且是inline行内元素
+        (注意⚠️:一个元素被设置position:absolute之后会变成块级元素)
+        虽然伪元素会影响元素的子元素个数, 但是它对于JS是隐藏的,
+        也就是查询 DOM 的时候不会增加负担
+    </pre>
+    <p class='or'>or</p>
+</body>
+<style type='text/css'>
+    .or{
+        text-align: center;
+        position:relative
+    }
+    .or::before,.or::after{
+        content:'';
+        position: absolute;
+        top:12px;
+        height:1px;
+        background: #ccc;
+        width:400px;
+    }
+    .or::before{
+        left:0
+    }
+    .or::after{
+        right:0
+    }
+</style>
+</html>

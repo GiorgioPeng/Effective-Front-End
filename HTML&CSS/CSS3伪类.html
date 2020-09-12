@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>巧用css3伪类</title>
+</head>
+
+<body>
+    <p>输入框获得焦点时触发</p>
+    <input type="search" />
+    <button class="icon-search">SEARCH</button>
+    <hr />
+    <p>输入非法时触发</p>
+    <input type='email' />
+    <button class="next-step">NEXT</button>
+    <hr/>
+    <p>使用css3的attr属性实现醒目提示</p>
+    <p>hello, <span data-title='Frontend Development'>FED</span></p>
+</body>
+<style type="text/css">
+    /* 输入框获得焦点时触发 */
+    .icon-search {
+        background: #ccc;
+    }
+
+    input[type='search']:focus+.icon-search {
+        background: #f00;
+    }
+
+    /* 输入非法时触发 */
+    input[type='email']:invalid+.next-step {
+        cursor: not-allowed;
+        background: #ccc;
+    }
+
+    /* 使用css3的attr属性实现醒目提示 */
+    span[data-title]{
+        position:relative;
+        /* 这里的relative是为了限制 before伪类的 absolute 是以这里为基准的 */
+    }
+    span[data-title]:hover:before{
+        content:attr(data-title);
+        background-color:cadetblue;
+        position:absolute;
+        top:50%;
+        left:150%;
+        transform:translateX(-50%);
+        white-space: nowrap;
+    }
+</style>
+
+</html>
